@@ -1,4 +1,4 @@
-# ApiApp
+# Front end of a weather app that is made with Angular. Stay tuned for more as I'm working on the back end right now.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
