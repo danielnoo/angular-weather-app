@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {GetWeatherService} from '../../get-weather.service';
 
 
 @Component({
@@ -16,34 +15,34 @@ export class MainComponent implements OnInit {
     feelsLike: number
   }
 
-  constructor(private weatherService: GetWeatherService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.weatherService.getWeather().subscribe((data) => {
-      this.weather = data
-      this.logWeather()
-    })
+    // this.weatherService.getWeather().subscribe((data) => {
+    //   this.weather = data
+    //   this.logWeather()
+    
     
     
   }
 
-  logWeather() {
-    let newObj = {
-      name: this.weather['location'].name,
-      temp: this.weather['current'].temp_c,
-      feelsLike: this.weather['current'].feelslike_c
-    }
+  // logWeather() {
+  //   let newObj = {
+  //     name: this.weather['location'].name,
+  //     temp: this.weather['current'].temp_c,
+  //     feelsLike: this.weather['current'].feelslike_c
+  //   }
 
-    this.displayData = newObj
-    // for(let data in this.weather) {
-    //   console.log(this.weather[data]);
+    // this.displayData = newObj
+    // // for(let data in this.weather) {
+    // //   console.log(this.weather[data]);
 
       
-    // }
-    console.log(this.displayData);
+    // // }
+    // console.log(this.displayData);
     
     
-  }
+
 
 
 
