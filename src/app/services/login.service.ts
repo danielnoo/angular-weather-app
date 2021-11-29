@@ -18,10 +18,10 @@ export class LoginService {
   private registerUrl = 'http://localhost:3001/api/users'
   constructor(private http: HttpClient) { }
 
-  login(user: User): Observable<User> {
+  login(user): Observable<any> {
     console.log('login attempt');
 
-   return this.http.post<User>(this.loginUrl, user, httpOptions)
+   return this.http.post(this.loginUrl, user, httpOptions)
     
   }
 

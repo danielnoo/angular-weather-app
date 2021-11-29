@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
+import { User } from '../../models/User';
 
 
 @Component({
@@ -15,7 +16,11 @@ export class LoginFormComponent implements OnInit {
   usernameRegister: string = '';
   displayNameRegister: string = '';
   passwordRegister: string = '';
-
+  myObserver: object = { 
+    next: (result: any) => console.log('Http result:', result),
+    error: (error: any) => console.log('Http error:', error.error),
+    complete: () => console.log('Http request complete')
+  };
   
   constructor(private loginService: LoginService) { }
 
@@ -24,22 +29,25 @@ export class LoginFormComponent implements OnInit {
 
   onSignIn () {
     console.log('sign in attempt');
+
+    
+
+    const user = {
+      username: this.signInName,
+      password: this.signInPassword
+    }
+
+    this.loginService.login(user).subscribe(this.myObserver)
     
   }
 
-  showRegister () {
+  showRegister() {
     this.signingIn = !this.signingIn
   }
 
-  onRegister () {
+  onRegister() {
     
-    // create observer to pass to subscribe
     
-    const myObserver = {
-      next: (result: any) => console.log('Http result:', result),
-      error: (error: any) => console.log('Http error:', error.error),
-      complete: () => console.log('Http request complete')
-    }
     
     // make user object to comply with mongoose model on server
 
@@ -51,7 +59,7 @@ export class LoginFormComponent implements OnInit {
     
     // call user registration service
     
-    this.loginService.register(user).subscribe(myObserver)
+    this.loginService.register(user).subscribe(this.myObserver)
 
 
     // reset form
