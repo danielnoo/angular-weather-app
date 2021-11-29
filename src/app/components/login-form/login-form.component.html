@@ -1,11 +1,11 @@
 <form class="signIn" (ngSubmit)="onSignIn()">
   <div class="form-control">
     <label for="signInName">Username</label>
-    <input type="text" name="signInName" placeholder="Enter user name" [(ngMogel)]="signInName">
+    <input type="text" name="signInName" placeholder="Enter username" id="signInName" [(ngModel)]="signInName" required>
   </div>
   <div class="form-control">
     <label for="signInPassword">Password</label>
-    <input type="text" name="signInPassword" placeholder="Enter password" [(ngMogel)]="signInPassword">
+    <input type="text" name="signInPassword" placeholder="Enter password" id="signInPassword" [(ngModel)]="signInPassword" required>
   </div>
   <input type="submit" value="Login">
   
