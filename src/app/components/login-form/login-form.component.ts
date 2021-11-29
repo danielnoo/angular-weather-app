@@ -32,12 +32,29 @@ export class LoginFormComponent implements OnInit {
   }
 
   onRegister () {
+    
+    // create observer to pass to subscribe
+    
+    const myObserver = {
+      next: (result: any) => console.log('Http result:', result),
+      error: (error: any) => console.log('Http error:', error.error),
+      complete: () => console.log('Http request complete')
+    }
+    
+    // make user object to comply with mongoose model on server
+
     const user = {
       username: this.usernameRegister,
       name: this.displayNameRegister,
       password: this.passwordRegister
     }
-    this.loginService.register(user).subscribe((result) => console.log(result))
+    
+    // call user registration service
+    
+    this.loginService.register(user).subscribe(myObserver)
+
+
+    // reset form
 
     this.usernameRegister = '';
     this.displayNameRegister = '';
