@@ -1,4 +1,4 @@
-<form class="signIn" (ngSubmit)="onSignIn()">
+<form *ngIf="signingIn; else register"   class="signIn" (ngSubmit)="onSignIn()">
   <div class="form-control">
     <label for="signInName">Username</label>
     <input type="text" name="signInName" placeholder="Enter username" id="signInName" [(ngModel)]="signInName" required>
@@ -8,5 +8,32 @@
     <input type="text" name="signInPassword" placeholder="Enter password" id="signInPassword" [(ngModel)]="signInPassword" required>
   </div>
   <input type="submit" value="Login">
-  
 </form>
+
+
+<button (click)="showRegister()">{{signingIn ? "Not Registered? Sign up!" : "Take me to Signin"}}</button>
+
+
+<ng-template #register>
+
+  <form class="signIn" (ngSubmit)="onRegister()">
+    <div class="form-control">
+      <label for="usernameRegister">Username</label>
+      <input type="text" name="usernameRegister" id="usernameRegister" [(ngModel)]="usernameRegister" placeholder="Enter a unique username" required>
+    </div>
+    <div class="form-control">
+      <label for="displayNameRegister">Display Name</label>
+      <input type="text" name="displayNameRegister" id="displayNameRegister" [(ngModel)]="displayNameRegister" placeholder="Enter a display name" required>
+    </div>
+    <div class="form-control">
+      <label for="passwordRegister">Password</label>
+      <input type="passwordRegister" name="passwordRegister" id="passwordRegister" [(ngModel)]="passwordRegister" placeholder="Enter a password" required>
+    </div>
+    <input type="submit" value="Register">
+      
+
+    
+  </form>
+
+</ng-template> 
+

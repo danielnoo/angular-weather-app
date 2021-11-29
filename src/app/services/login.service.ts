@@ -14,14 +14,18 @@ const httpOptions = {
 })
 export class LoginService {
 
-  private apiUrl = 'http://localhost:4200/api/login'
-
+  private loginUrl = 'http://localhost:3001/api/login'
+  private registerUrl = 'http://localhost:3001/api/users'
   constructor(private http: HttpClient) { }
 
-  login (user: User): Observable<User> {
+  login(user: User): Observable<User> {
     console.log('login attempt');
 
-   return this.http.post<User>(this.apiUrl, user, httpOptions)
+   return this.http.post<User>(this.loginUrl, user, httpOptions)
     
+  }
+
+  register(user): Observable<any> {
+    return this.http.post(this.registerUrl, user, httpOptions)
   }
 }

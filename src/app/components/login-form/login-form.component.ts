@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -8,10 +9,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
   showSignIn: boolean = true;
+  signingIn: boolean = true;
   signInName: string = '';
   signInPassword: string = '';
+  usernameRegister: string = '';
+  displayNameRegister: string = '';
+  passwordRegister: string = '';
+
   
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -19,5 +25,22 @@ export class LoginFormComponent implements OnInit {
   onSignIn () {
     console.log('sign in attempt');
     
+  }
+
+  showRegister () {
+    this.signingIn = !this.signingIn
+  }
+
+  onRegister () {
+    const user = {
+      username: this.usernameRegister,
+      name: this.displayNameRegister,
+      password: this.passwordRegister
+    }
+    this.loginService.register(user).subscribe((result) => console.log(result))
+
+    this.usernameRegister = '';
+    this.displayNameRegister = '';
+    this.passwordRegister = '';
   }
 }
