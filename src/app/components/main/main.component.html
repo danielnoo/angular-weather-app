@@ -1,9 +1,10 @@
 <main>
-
-  <div>recent scores component goes here</div>
+  <div>
+    <h2>Recent Weather Predictions</h2>
+    <div *ngFor="let data of weather">
+      {{data.weatherBit.forecast}}
+    </div>
+  </div>
 
   <div>total/cumulative scores go here</div>
-  
-
-  
 </main>

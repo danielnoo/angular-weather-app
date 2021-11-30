@@ -1,29 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  weather: any[] = [];
+  // add to server: .sort({_id:-1} to ensure returning most recent first
 
-  weather!: {}
-  displayData!: {
-    name: string,
-    temp: number,
-    feelsLike: number
-  }
-
-  constructor() { }
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    // this.weatherService.getWeather().subscribe((data) => {
-    //   this.weather = data
-    //   this.logWeather()
+    this.weatherService.getWeatherData().subscribe((data) => {
+    this.weather = data
     
+    console.log(data);
     
-    
+  });
   }
 
   // logWeather() {
@@ -33,17 +28,10 @@ export class MainComponent implements OnInit {
   //     feelsLike: this.weather['current'].feelslike_c
   //   }
 
-    // this.displayData = newObj
-    // // for(let data in this.weather) {
-    // //   console.log(this.weather[data]);
+  // this.displayData = newObj
+  // // for(let data in this.weather) {
+  // //   console.log(this.weather[data]);
 
-      
-    // // }
-    // console.log(this.displayData);
-    
-    
-
-
-
-
+  // // }
+  // console.log(this.displayData);
 }
