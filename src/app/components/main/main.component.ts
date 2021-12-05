@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
+import { ConvertDataService } from '../../services/convert-data.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { multi } from './data';
 
 @Component({
   selector: 'app-main',
@@ -8,30 +11,52 @@ import { WeatherService } from '../../services/weather.service';
 })
 export class MainComponent implements OnInit {
   weather: any[] = [];
-  // add to server: .sort({_id:-1} to ensure returning most recent first
+  multi!: any[];
+ 
+  view: [number, number] = [700, 400];
+  
 
-  constructor(private weatherService: WeatherService) {}
+  // options
+  showXAxis: boolean = true;
+  showYAxis: boolean = true;
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Country';
+  showYAxisLabel: boolean = true;
+  yAxisLabel: string = 'Population';
+  legendTitle: string = 'Years';
+
+  colorScheme = {
+    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+  };
+
+  constructor(private weatherService: WeatherService, private convertDataService: ConvertDataService) {
+    Object.assign(this, { multi })
+  }
 
   ngOnInit(): void {
     this.weatherService.getWeatherData().subscribe((data) => {
-    this.weather = data
+    
     
     console.log(data);
+    this.multi = this.convertDataService.convertToNgxChartFormat(data)
     
   });
   }
 
-  // logWeather() {
-  //   let newObj = {
-  //     name: this.weather['location'].name,
-  //     temp: this.weather['current'].temp_c,
-  //     feelsLike: this.weather['current'].feelslike_c
-  //   }
+  onSelect(data): void {
+      console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    }
 
-  // this.displayData = newObj
-  // // for(let data in this.weather) {
-  // //   console.log(this.weather[data]);
+  onActivate(data): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
 
-  // // }
-  // console.log(this.displayData);
+  onDeactivate(data): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+
+
 }
