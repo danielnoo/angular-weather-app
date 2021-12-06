@@ -8,9 +8,9 @@ export class ConvertDataService {
 
   constructor() { }
 
-  convertToNgxChartFormat (data) {
+  convertToNgxChartFormat (data, dayIndex) {
     let formattedData : any[] = [];
-    for(let key in data[0]) {
+    for(let key in data[dayIndex]) {
       
       
       if(key !== 'date' && key !== 'id') {
@@ -19,11 +19,15 @@ export class ConvertDataService {
           "series": [
             {
               "name": "Today's Temperature",
-              "value": data[0][key].currentWeather
+              "value": data[dayIndex][key].currentWeather
             },
             {
-              "name": "Forecasted Temperature",
-              "value": data[0][key].forecast
+              "name": "Yesterday's Forecast",
+              "value": data[dayIndex + 1][key].forecast
+            },
+            {
+              "name": "Tomorrow's Forecast",
+              "value": data[dayIndex][key].forecast
             }
           ]
         }
