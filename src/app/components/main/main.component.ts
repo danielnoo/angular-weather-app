@@ -83,3 +83,9 @@ export class MainComponent implements OnInit {
 
 
 }
+
+
+// todo - create a component to hold both the chart and a separate inset component to navigate the days(the current nav)
+// do similarly for a ratings chart component
+
+// install bootstrap for basic ui stuff
