@@ -1,0 +1,7 @@
+<nav>
+  <button (click)="handleClick('prev')">Previous Day</button>
+  <div>
+    <span *ngIf="weather.length > 0">{{weather[dayIndex].date.slice(0, 10)}}</span>
+  </div>
+  <button (click)="handleClick('next')">Next Day</button>
+</nav>

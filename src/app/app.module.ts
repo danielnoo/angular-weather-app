@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { DailychartChartComponent } from './components/dailychart-chart/dailychart-chart.component';
+import { DailychartNavComponent } from './components/dailychart-nav/dailychart-nav.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { NotificationComponent } from './components/notification/notification.co
     MainComponent,
     LoginFormComponent,
     NotificationComponent,
+    DailychartChartComponent,
+    DailychartNavComponent,
     
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, NgxChartsModule, BrowserAnimationsModule],
