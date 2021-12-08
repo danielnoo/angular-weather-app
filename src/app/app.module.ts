@@ -12,6 +12,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { NotificationComponent } from './components/notification/notification.component';
 import { DailychartChartComponent } from './components/dailychart-chart/dailychart-chart.component';
 import { DailychartNavComponent } from './components/dailychart-nav/dailychart-nav.component';
+import { RatingChartComponent } from './components/rating-chart/rating-chart.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DailychartNavComponent } from './components/dailychart-nav/dailychart-n
     NotificationComponent,
     DailychartChartComponent,
     DailychartNavComponent,
+    RatingChartComponent,
   ],
   imports: [
     BrowserModule,
