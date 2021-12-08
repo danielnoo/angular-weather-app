@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { ConvertDataService } from '../../services/convert-data.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -9,6 +9,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   styleUrls: ['./dailychart-chart.component.scss'],
 })
 export class DailychartChartComponent implements OnInit {
+  
+  
   weather: any[] = [];
   multi: any[] = [];
 
@@ -41,11 +43,13 @@ export class DailychartChartComponent implements OnInit {
       this.weather = data;
 
       // Call service to display most recent day's results along with tomorrow's forecast
-      console.log(data);
+      
       this.multi = this.convertDataService.convertToNgxChartFormat(
         data,
         this.dayIndex
       );
+
+      
     });
   }
 
@@ -89,10 +93,6 @@ export class DailychartChartComponent implements OnInit {
     } else if(instruction === "next" && this.dayIndex !== 0) {
 
       //   // if element is 0 (most current day) then return, else decrease indexDay(move back in time one day)
-
-   
-      
-
       // set the view to point to the correct array element
       
       this.dayIndex = this.dayIndex - 1;
@@ -100,9 +100,8 @@ export class DailychartChartComponent implements OnInit {
     } else {
       return
     }
-
-    
-    
   }
+
+
 }
 
