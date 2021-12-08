@@ -22,9 +22,14 @@ import { DailychartNavComponent } from './components/dailychart-nav/dailychart-n
     NotificationComponent,
     DailychartChartComponent,
     DailychartNavComponent,
-    
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, NgxChartsModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    NgxChartsModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

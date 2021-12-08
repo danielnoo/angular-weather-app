@@ -18,28 +18,25 @@ export class LoginFormComponent implements OnInit {
   errorMessage: string = '';
   myObserver: object = {
     next: (result: any) => {
-      console.log('Http result:', result); 
-     
+      console.log('Http result:', result);
     },
     error: (error: any) => {
-      console.log('Http error:', error.error)
+      console.log('Http error:', error.error);
       // yes, mongoose unique validation errors are nested this way, haha.
-      this.errorMessage = error.error.error
+      this.errorMessage = error.error.error;
     },
     complete: () => console.log('Http request complete'),
   };
-  
 
   constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {}
 
- 
   onSignIn() {
     console.log('sign in attempt');
     // reset error message if there is one showing
-    this.errorMessage = ''
-    // create user object to pass 
+    this.errorMessage = '';
+    // create user object to pass
     const user = {
       username: this.signInName,
       password: this.signInPassword,

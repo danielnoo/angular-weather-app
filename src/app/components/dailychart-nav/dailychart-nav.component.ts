@@ -3,20 +3,17 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-dailychart-nav',
   templateUrl: './dailychart-nav.component.html',
-  styleUrls: ['./dailychart-nav.component.scss']
+  styleUrls: ['./dailychart-nav.component.scss'],
 })
 export class DailychartNavComponent implements OnInit {
-  @Output() onPageTurn: EventEmitter<any> = new EventEmitter();
-  
-  @Input() dayIndex: number = 0;
+  @Output() pageTurn: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() dayIndex: number;
   @Input() weather: any[] = [];
 
-  constructor() { }
+  constructor() {}
 
- 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   handleClick(instruction: string) {
     // if the element in the array is less than 6(with more data in the DB will allow for more complexity) ... increment the day (move back a day - since it is sorted temporally descending) and feed new data to ngx chart via the convert data service
@@ -26,11 +23,9 @@ export class DailychartNavComponent implements OnInit {
     // } else {
     //   return
     // }
+    console.log(instruction);
 
-    
-      this.onPageTurn.emit(instruction);
-   
-
+    this.pageTurn.emit('hello');
   }
 
   // handleNextClickEmit() {
@@ -43,8 +38,4 @@ export class DailychartNavComponent implements OnInit {
   //   //   this.multi = this.convertDataService.convertToNgxChartFormat(this.weather, this.dayIndex)
   //   // }
   // }
-
 }
-
-
-

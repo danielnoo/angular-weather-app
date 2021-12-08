@@ -12,15 +12,10 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class WeatherService {
-
-  private apiUrl = 'http://localhost:3001/api/entries'
+  private apiUrl = 'http://localhost:3001/api/entries';
   constructor(private http: HttpClient) {}
 
-  
-
   getWeatherData(): Observable<any> {
-
-    return this.http.get(this.apiUrl)
-
+    return this.http.get(this.apiUrl);
   }
 }

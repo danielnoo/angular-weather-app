@@ -8,9 +8,8 @@ describe('DailychartNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DailychartNavComponent ]
-    })
-    .compileComponents();
+      declarations: [DailychartNavComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
-import { ConvertDataService } from '../../services/convert-data.service';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @Component({
@@ -10,21 +7,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  
+  constructor() {}
 
-  constructor() {
-    
-  }
-
-  ngOnInit(): void {
-    
-    
-  
-  }
-
- 
-
-
+  ngOnInit(): void {}
 }
-
-

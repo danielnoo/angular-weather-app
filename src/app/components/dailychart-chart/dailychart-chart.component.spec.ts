@@ -8,9 +8,8 @@ describe('DailychartChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DailychartChartComponent ]
-    })
-    .compileComponents();
+      declarations: [DailychartChartComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
