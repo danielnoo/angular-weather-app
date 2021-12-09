@@ -28,7 +28,7 @@ export class RatingChartComponent implements OnInit {
   timeline: boolean = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+    domain: ['#5AA454', '#E44D25', '#000000', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
   constructor(
@@ -72,16 +72,18 @@ export class RatingChartComponent implements OnInit {
     data.forEach(api => {
       const apiName = api.name
       const valuesArray: any[] = [];
+      // for each api, gather the values of the ratings in the series array
       api['series'].forEach(series => {
         valuesArray.push(series.value)
       })
 
+      // get the average
       const sum = valuesArray.reduce((a, b) => a + b, 0)
 
       const average = parseFloat((sum / valuesArray.length).toFixed(2))
 
 
-
+      // push object to array
       apiArray.push({
         apiName,
         average
@@ -91,11 +93,13 @@ export class RatingChartComponent implements OnInit {
       
     })
 
-    console.log(apiArray);
     
-    this.averages = apiArray
 
-  }
+    // set these averages into state in descending order
+    
+    this.averages = apiArray.sort((a, b) => b.average - a.average)
+    console.log(this.averages);
+  } 
 
 }
 
