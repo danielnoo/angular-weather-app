@@ -21,7 +21,7 @@ export class DailychartChartComponent implements OnInit {
   // options
   showXAxis: boolean = true;
   showYAxis: boolean = true;
-  gradient: boolean = true;
+  gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Weather API';

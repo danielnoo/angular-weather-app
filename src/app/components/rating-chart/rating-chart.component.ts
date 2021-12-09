@@ -11,7 +11,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   styleUrls: ['./rating-chart.component.scss']
 })
 export class RatingChartComponent implements OnInit {
- 
+  averages: any[] = [];
   multi: any[];
   view: [number, number] = [700, 300];
 
@@ -22,9 +22,9 @@ export class RatingChartComponent implements OnInit {
   xAxis: boolean = true;
   yAxis: boolean = true;
   showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
+  showXAxisLabel: boolean = false;
+  
+  yAxisLabel: string = 'Rating';
   timeline: boolean = true;
 
   colorScheme = {
@@ -42,12 +42,11 @@ export class RatingChartComponent implements OnInit {
       
       // Call service to display most recent day's results along with tomorrow's forecast
       console.log(data);
-      // this.multi = this.convertDataService.convertToNgxChartFormat(
-      //   data,
+      
        
-      // );
-      this.convertDataService.getRatingsForLineChart(data)
+      this.multi = this.convertDataService.getRatingsForLineChart(data)
 
+      this.getAverages(this.multi)
       
     });
   }
@@ -64,8 +63,39 @@ export class RatingChartComponent implements OnInit {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
   
+  // get the average rating for each API
+  getAverages(data) {
+    const apiArray: any[] = [];
 
-  
+    // for each api in data, loop through each of their series arrays, push the values to an array and get the average
+    
+    data.forEach(api => {
+      const apiName = api.name
+      const valuesArray: any[] = [];
+      api['series'].forEach(series => {
+        valuesArray.push(series.value)
+      })
+
+      const sum = valuesArray.reduce((a, b) => a + b, 0)
+
+      const average = parseFloat((sum / valuesArray.length).toFixed(2))
+
+
+
+      apiArray.push({
+        apiName,
+        average
+      })
+      
+
+      
+    })
+
+    console.log(apiArray);
+    
+    this.averages = apiArray
+
+  }
 
 }
 
