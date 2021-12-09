@@ -1,6 +1,9 @@
 li {
   list-style-type: none;
   display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .avgRatings {
@@ -14,4 +17,14 @@ li {
 ul {
   padding: 0;
   margin: 0;
+}
+
+.averageContainer {
+  width: 100%;
+  display: flex;
+}
+
+.explanation {
+  width: 50%;
+  padding-right: 3rem;
 }

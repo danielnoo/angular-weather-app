@@ -1,13 +1,25 @@
-<app-dailychart-nav [dayIndex]="dayIndex" [weather]="weather" (pageTurn)="handlePageTurn($event)">
-  
+<app-dailychart-nav
+  [dayIndex]="dayIndex"
+  [weather]="weather"
+  (pageTurn)="handlePageTurn($event)"
+>
 </app-dailychart-nav>
 <div #containerRef>
-  <ngx-charts-bar-vertical-2d scheme="picnic" [view]="[containerRef.offsetWidth, 450]"
-  [results]="multi" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
-  (deactivate)="onDeactivate($event)">
+  <ngx-charts-bar-vertical-2d
+    scheme="picnic"
+    [view]="[containerRef.offsetWidth, 450]"
+    [results]="multi"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    (select)="onSelect($event)"
+    (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)"
+  >
   </ngx-charts-bar-vertical-2d>
 </div>
-
-

@@ -9,8 +9,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   styleUrls: ['./dailychart-chart.component.scss'],
 })
 export class DailychartChartComponent implements OnInit {
-  
-  
   weather: any[] = [];
   multi: any[] = [];
 
@@ -43,13 +41,11 @@ export class DailychartChartComponent implements OnInit {
       this.weather = data;
 
       // Call service to display most recent day's results along with tomorrow's forecast
-      
+
       this.multi = this.convertDataService.convertToNgxChartFormat(
         data,
         this.dayIndex
       );
-
-      
     });
   }
 
@@ -67,41 +63,42 @@ export class DailychartChartComponent implements OnInit {
 
   handlePageTurn(instruction: string) {
     // basic error handling
-    if (instruction === "next" && this.dayIndex <= 0) {
+    if (instruction === 'next' && this.dayIndex <= 0) {
       return;
     } else if (
-      instruction === "prev" &&
+      instruction === 'prev' &&
       this.dayIndex >= this.weather.length - 1
     ) {
       return;
     }
     // increment or decrement
-    if (instruction === "prev" && this.dayIndex < 7) {
+    if (instruction === 'prev' && this.dayIndex < 7) {
       console.log('prev pressed');
-      
+
       // if the element in the array is less than 6(with more data in the DB will allow for more complexity) ... increment the day (move back a day - since it is sorted temporally descending) and feed new data to ngx chart via the convert data service
       this.dayIndex = this.dayIndex + 1;
-      this.multi = this.convertDataService.convertToNgxChartFormat(this.weather, this.dayIndex)
+      this.multi = this.convertDataService.convertToNgxChartFormat(
+        this.weather,
+        this.dayIndex
+      );
 
-      
-    // if(this.dayIndex < 6) {
-    //   this.dayIndex = this.dayIndex + 1
-    //   
-    // } else {
-    //   return
-    // }
-    } else if(instruction === "next" && this.dayIndex !== 0) {
-
+      // if(this.dayIndex < 6) {
+      //   this.dayIndex = this.dayIndex + 1
+      //
+      // } else {
+      //   return
+      // }
+    } else if (instruction === 'next' && this.dayIndex !== 0) {
       //   // if element is 0 (most current day) then return, else decrease indexDay(move back in time one day)
       // set the view to point to the correct array element
-      
+
       this.dayIndex = this.dayIndex - 1;
-      this.multi = this.convertDataService.convertToNgxChartFormat(this.weather, this.dayIndex);
+      this.multi = this.convertDataService.convertToNgxChartFormat(
+        this.weather,
+        this.dayIndex
+      );
     } else {
-      return
+      return;
     }
   }
-
-
 }
-

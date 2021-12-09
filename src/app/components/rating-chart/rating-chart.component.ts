@@ -1,4 +1,3 @@
-
 import { Component, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { WeatherService } from '../../services/weather.service';
@@ -8,7 +7,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 @Component({
   selector: 'app-rating-chart',
   templateUrl: './rating-chart.component.html',
-  styleUrls: ['./rating-chart.component.scss']
+  styleUrls: ['./rating-chart.component.scss'],
 })
 export class RatingChartComponent implements OnInit {
   averages: any[] = [];
@@ -23,12 +22,12 @@ export class RatingChartComponent implements OnInit {
   yAxis: boolean = true;
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = false;
-  
+
   yAxisLabel: string = 'Rating';
   timeline: boolean = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#000000', '#7aa3e5', '#a8385d', '#aae3f5']
+    domain: ['#5AA454', '#E44D25', '#000000', '#7aa3e5', '#a8385d', '#aae3f5'],
   };
 
   constructor(
@@ -37,17 +36,13 @@ export class RatingChartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.weatherService.getWeatherData().subscribe((data) => {
-      
       // Call service to display most recent day's results along with tomorrow's forecast
       console.log(data);
-      
-       
-      this.multi = this.convertDataService.getRatingsForLineChart(data)
 
-      this.getAverages(this.multi)
-      
+      this.multi = this.convertDataService.getRatingsForLineChart(data);
+
+      this.getAverages(this.multi);
     });
   }
 
@@ -62,46 +57,36 @@ export class RatingChartComponent implements OnInit {
   onDeactivate(data): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
-  
+
   // get the average rating for each API
   getAverages(data) {
     const apiArray: any[] = [];
 
     // for each api in data, loop through each of their series arrays, push the values to an array and get the average
-    
-    data.forEach(api => {
-      const apiName = api.name
+
+    data.forEach((api) => {
+      const apiName = api.name;
       const valuesArray: any[] = [];
       // for each api, gather the values of the ratings in the series array
-      api['series'].forEach(series => {
-        valuesArray.push(series.value)
-      })
+      api['series'].forEach((series) => {
+        valuesArray.push(series.value);
+      });
 
       // get the average
-      const sum = valuesArray.reduce((a, b) => a + b, 0)
+      const sum = valuesArray.reduce((a, b) => a + b, 0);
 
-      const average = parseFloat((sum / valuesArray.length).toFixed(2))
-
+      const average = parseFloat((sum / valuesArray.length).toFixed(2));
 
       // push object to array
       apiArray.push({
         apiName,
-        average
-      })
-      
-
-      
-    })
-
-    
+        average,
+      });
+    });
 
     // set these averages into state in descending order
-    
-    this.averages = apiArray.sort((a, b) => b.average - a.average)
+
+    this.averages = apiArray.sort((a, b) => b.average - a.average);
     console.log(this.averages);
-  } 
-
+  }
 }
-
-
-

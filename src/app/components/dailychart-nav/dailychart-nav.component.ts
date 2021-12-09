@@ -16,7 +16,6 @@ export class DailychartNavComponent implements OnInit {
   ngOnInit(): void {}
 
   handleClick(instruction: string) {
-   this.pageTurn.emit(instruction);
+    this.pageTurn.emit(instruction);
   }
-
 }
